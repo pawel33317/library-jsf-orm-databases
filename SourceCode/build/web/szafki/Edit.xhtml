@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SzafkiEditDlg" widgetVar="SzafkiEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditSzafkiTitle}">
+            <h:form id="SzafkiEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{szafkiController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditSzafkiLabel_idszafki}" for="idszafki" />
+                        <p:inputText id="idszafki" value="#{szafkiController.selected.idszafki}" title="#{bundle.EditSzafkiTitle_idszafki}" required="true" requiredMessage="#{bundle.EditSzafkiRequiredMessage_idszafki}"/>
+                        <p:outputLabel value="#{bundle.EditSzafkiLabel_szafka}" for="szafka" />
+                        <p:inputText id="szafka" value="#{szafkiController.selected.szafka}" title="#{bundle.EditSzafkiTitle_szafka}" required="true" requiredMessage="#{bundle.EditSzafkiRequiredMessage_szafka}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{szafkiController.update}" value="#{bundle.Save}" update="display,:SzafkiListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SzafkiEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SzafkiEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

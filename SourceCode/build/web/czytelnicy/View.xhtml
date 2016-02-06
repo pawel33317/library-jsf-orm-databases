@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CzytelnicyViewDlg" widgetVar="CzytelnicyViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewCzytelnicyTitle}">
+            <h:form id="CzytelnicyViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{czytelnicyController.selected != null}">
+                        <h:outputText value="#{bundle.ViewCzytelnicyLabel_NRkarty}"/>
+                        <h:outputText value="#{czytelnicyController.selected.NRkarty}" title="#{bundle.ViewCzytelnicyTitle_NRkarty}"/>
+                        <h:outputText value="#{bundle.ViewCzytelnicyLabel_nazwisko}"/>
+                        <h:outputText value="#{czytelnicyController.selected.nazwisko}" title="#{bundle.ViewCzytelnicyTitle_nazwisko}"/>
+                        <h:outputText value="#{bundle.ViewCzytelnicyLabel_imie}"/>
+                        <h:outputText value="#{czytelnicyController.selected.imie}" title="#{bundle.ViewCzytelnicyTitle_imie}"/>
+                        <h:outputText value="#{bundle.ViewCzytelnicyLabel_iddokumentu}"/>
+                        <h:outputText value="#{czytelnicyController.selected.iddokumentu}" title="#{bundle.ViewCzytelnicyTitle_iddokumentu}"/>
+                        <h:outputText value="#{bundle.ViewCzytelnicyLabel_NRdokumentu}"/>
+                        <h:outputText value="#{czytelnicyController.selected.NRdokumentu}" title="#{bundle.ViewCzytelnicyTitle_NRdokumentu}"/>
+                        <h:outputText value="#{bundle.ViewCzytelnicyLabel_dataUr}"/>
+                        <h:outputText value="#{czytelnicyController.selected.dataUr}" title="#{bundle.ViewCzytelnicyTitle_dataUr}"/>
+                        <h:outputText value="#{bundle.ViewCzytelnicyLabel_miejsceUr}"/>
+                        <h:outputText value="#{czytelnicyController.selected.miejsceUr}" title="#{bundle.ViewCzytelnicyTitle_miejsceUr}"/>
+                        <h:outputText value="#{bundle.ViewCzytelnicyLabel_kod}"/>
+                        <h:outputText value="#{czytelnicyController.selected.kod}" title="#{bundle.ViewCzytelnicyTitle_kod}"/>
+                        <h:outputText value="#{bundle.ViewCzytelnicyLabel_miasto}"/>
+                        <h:outputText value="#{czytelnicyController.selected.miasto}" title="#{bundle.ViewCzytelnicyTitle_miasto}"/>
+                        <h:outputText value="#{bundle.ViewCzytelnicyLabel_IDulicy}"/>
+                        <h:outputText value="#{czytelnicyController.selected.IDulicy}" title="#{bundle.ViewCzytelnicyTitle_IDulicy}"/>
+                        <h:outputText value="#{bundle.ViewCzytelnicyLabel_ulica}"/>
+                        <h:outputText value="#{czytelnicyController.selected.ulica}" title="#{bundle.ViewCzytelnicyTitle_ulica}"/>
+                        <h:outputText value="#{bundle.ViewCzytelnicyLabel_telefon}"/>
+                        <h:outputText value="#{czytelnicyController.selected.telefon}" title="#{bundle.ViewCzytelnicyTitle_telefon}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CzytelnicyViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

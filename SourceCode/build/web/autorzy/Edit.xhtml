@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AutorzyEditDlg" widgetVar="AutorzyEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditAutorzyTitle}">
+            <h:form id="AutorzyEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{autorzyController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditAutorzyLabel_idautora}" for="idautora" />
+                        <p:inputText id="idautora" value="#{autorzyController.selected.idautora}" title="#{bundle.EditAutorzyTitle_idautora}" required="true" requiredMessage="#{bundle.EditAutorzyRequiredMessage_idautora}"/>
+                        <p:outputLabel value="#{bundle.EditAutorzyLabel_nazwisko}" for="nazwisko" />
+                        <p:inputText id="nazwisko" value="#{autorzyController.selected.nazwisko}" title="#{bundle.EditAutorzyTitle_nazwisko}" required="true" requiredMessage="#{bundle.EditAutorzyRequiredMessage_nazwisko}"/>
+                        <p:outputLabel value="#{bundle.EditAutorzyLabel_imie}" for="imie" />
+                        <p:inputText id="imie" value="#{autorzyController.selected.imie}" title="#{bundle.EditAutorzyTitle_imie}" required="true" requiredMessage="#{bundle.EditAutorzyRequiredMessage_imie}"/>
+                        <p:outputLabel value="#{bundle.EditAutorzyLabel_uwagi}" for="uwagi" />
+                        <p:inputText id="uwagi" value="#{autorzyController.selected.uwagi}" title="#{bundle.EditAutorzyTitle_uwagi}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{autorzyController.update}" value="#{bundle.Save}" update="display,:AutorzyListForm:datalist,:growl" oncomplete="handleSubmit(args, 'AutorzyEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AutorzyEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

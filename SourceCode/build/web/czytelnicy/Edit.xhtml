@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CzytelnicyEditDlg" widgetVar="CzytelnicyEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCzytelnicyTitle}">
+            <h:form id="CzytelnicyEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{czytelnicyController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditCzytelnicyLabel_NRkarty}" for="NRkarty" />
+                        <p:inputText id="NRkarty" value="#{czytelnicyController.selected.NRkarty}" title="#{bundle.EditCzytelnicyTitle_NRkarty}" required="true" requiredMessage="#{bundle.EditCzytelnicyRequiredMessage_NRkarty}"/>
+                        <p:outputLabel value="#{bundle.EditCzytelnicyLabel_nazwisko}" for="nazwisko" />
+                        <p:inputText id="nazwisko" value="#{czytelnicyController.selected.nazwisko}" title="#{bundle.EditCzytelnicyTitle_nazwisko}" required="true" requiredMessage="#{bundle.EditCzytelnicyRequiredMessage_nazwisko}"/>
+                        <p:outputLabel value="#{bundle.EditCzytelnicyLabel_imie}" for="imie" />
+                        <p:inputText id="imie" value="#{czytelnicyController.selected.imie}" title="#{bundle.EditCzytelnicyTitle_imie}" required="true" requiredMessage="#{bundle.EditCzytelnicyRequiredMessage_imie}"/>
+                        <p:outputLabel value="#{bundle.EditCzytelnicyLabel_iddokumentu}" for="iddokumentu" />
+                        <p:inputText id="iddokumentu" value="#{czytelnicyController.selected.iddokumentu}" title="#{bundle.EditCzytelnicyTitle_iddokumentu}" />
+                        <p:outputLabel value="#{bundle.EditCzytelnicyLabel_NRdokumentu}" for="NRdokumentu" />
+                        <p:inputText id="NRdokumentu" value="#{czytelnicyController.selected.NRdokumentu}" title="#{bundle.EditCzytelnicyTitle_NRdokumentu}" />
+                        <p:outputLabel value="#{bundle.EditCzytelnicyLabel_dataUr}" for="dataUr" />
+                        <p:inputText id="dataUr" value="#{czytelnicyController.selected.dataUr}" title="#{bundle.EditCzytelnicyTitle_dataUr}" />
+                        <p:outputLabel value="#{bundle.EditCzytelnicyLabel_miejsceUr}" for="miejsceUr" />
+                        <p:inputText id="miejsceUr" value="#{czytelnicyController.selected.miejsceUr}" title="#{bundle.EditCzytelnicyTitle_miejsceUr}" />
+                        <p:outputLabel value="#{bundle.EditCzytelnicyLabel_kod}" for="kod" />
+                        <p:inputText id="kod" value="#{czytelnicyController.selected.kod}" title="#{bundle.EditCzytelnicyTitle_kod}" />
+                        <p:outputLabel value="#{bundle.EditCzytelnicyLabel_miasto}" for="miasto" />
+                        <p:inputText id="miasto" value="#{czytelnicyController.selected.miasto}" title="#{bundle.EditCzytelnicyTitle_miasto}" />
+                        <p:outputLabel value="#{bundle.EditCzytelnicyLabel_IDulicy}" for="IDulicy" />
+                        <p:inputText id="IDulicy" value="#{czytelnicyController.selected.IDulicy}" title="#{bundle.EditCzytelnicyTitle_IDulicy}" />
+                        <p:outputLabel value="#{bundle.EditCzytelnicyLabel_ulica}" for="ulica" />
+                        <p:inputText id="ulica" value="#{czytelnicyController.selected.ulica}" title="#{bundle.EditCzytelnicyTitle_ulica}" />
+                        <p:outputLabel value="#{bundle.EditCzytelnicyLabel_telefon}" for="telefon" />
+                        <p:inputText id="telefon" value="#{czytelnicyController.selected.telefon}" title="#{bundle.EditCzytelnicyTitle_telefon}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{czytelnicyController.update}" value="#{bundle.Save}" update="display,:CzytelnicyListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CzytelnicyEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CzytelnicyEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

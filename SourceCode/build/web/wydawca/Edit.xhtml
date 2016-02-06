@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="WydawcaEditDlg" widgetVar="WydawcaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditWydawcaTitle}">
+            <h:form id="WydawcaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{wydawcaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditWydawcaLabel_idwydawcy}" for="idwydawcy" />
+                        <p:inputText id="idwydawcy" value="#{wydawcaController.selected.idwydawcy}" title="#{bundle.EditWydawcaTitle_idwydawcy}" required="true" requiredMessage="#{bundle.EditWydawcaRequiredMessage_idwydawcy}"/>
+                        <p:outputLabel value="#{bundle.EditWydawcaLabel_wydawca}" for="wydawca" />
+                        <p:inputText id="wydawca" value="#{wydawcaController.selected.wydawca}" title="#{bundle.EditWydawcaTitle_wydawca}" required="true" requiredMessage="#{bundle.EditWydawcaRequiredMessage_wydawca}"/>
+                        <p:outputLabel value="#{bundle.EditWydawcaLabel_nazwa}" for="nazwa" />
+                        <p:inputText id="nazwa" value="#{wydawcaController.selected.nazwa}" title="#{bundle.EditWydawcaTitle_nazwa}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{wydawcaController.update}" value="#{bundle.Save}" update="display,:WydawcaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'WydawcaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="WydawcaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

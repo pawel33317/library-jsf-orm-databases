@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CzytelnicyCreateDlg" widgetVar="CzytelnicyCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCzytelnicyTitle}">
+            <h:form id="CzytelnicyCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{czytelnicyController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateCzytelnicyLabel_NRkarty}" for="NRkarty" />
+                        <p:inputText id="NRkarty" value="#{czytelnicyController.selected.NRkarty}" title="#{bundle.CreateCzytelnicyTitle_NRkarty}" required="true" requiredMessage="#{bundle.CreateCzytelnicyRequiredMessage_NRkarty}"/>
+                        <p:outputLabel value="#{bundle.CreateCzytelnicyLabel_nazwisko}" for="nazwisko" />
+                        <p:inputText id="nazwisko" value="#{czytelnicyController.selected.nazwisko}" title="#{bundle.CreateCzytelnicyTitle_nazwisko}" required="true" requiredMessage="#{bundle.CreateCzytelnicyRequiredMessage_nazwisko}"/>
+                        <p:outputLabel value="#{bundle.CreateCzytelnicyLabel_imie}" for="imie" />
+                        <p:inputText id="imie" value="#{czytelnicyController.selected.imie}" title="#{bundle.CreateCzytelnicyTitle_imie}" required="true" requiredMessage="#{bundle.CreateCzytelnicyRequiredMessage_imie}"/>
+                        <p:outputLabel value="#{bundle.CreateCzytelnicyLabel_iddokumentu}" for="iddokumentu" />
+                        <p:inputText id="iddokumentu" value="#{czytelnicyController.selected.iddokumentu}" title="#{bundle.CreateCzytelnicyTitle_iddokumentu}" />
+                        <p:outputLabel value="#{bundle.CreateCzytelnicyLabel_NRdokumentu}" for="NRdokumentu" />
+                        <p:inputText id="NRdokumentu" value="#{czytelnicyController.selected.NRdokumentu}" title="#{bundle.CreateCzytelnicyTitle_NRdokumentu}" />
+                        <p:outputLabel value="#{bundle.CreateCzytelnicyLabel_dataUr}" for="dataUr" />
+                        <p:inputText id="dataUr" value="#{czytelnicyController.selected.dataUr}" title="#{bundle.CreateCzytelnicyTitle_dataUr}" />
+                        <p:outputLabel value="#{bundle.CreateCzytelnicyLabel_miejsceUr}" for="miejsceUr" />
+                        <p:inputText id="miejsceUr" value="#{czytelnicyController.selected.miejsceUr}" title="#{bundle.CreateCzytelnicyTitle_miejsceUr}" />
+                        <p:outputLabel value="#{bundle.CreateCzytelnicyLabel_kod}" for="kod" />
+                        <p:inputText id="kod" value="#{czytelnicyController.selected.kod}" title="#{bundle.CreateCzytelnicyTitle_kod}" />
+                        <p:outputLabel value="#{bundle.CreateCzytelnicyLabel_miasto}" for="miasto" />
+                        <p:inputText id="miasto" value="#{czytelnicyController.selected.miasto}" title="#{bundle.CreateCzytelnicyTitle_miasto}" />
+                        <p:outputLabel value="#{bundle.CreateCzytelnicyLabel_IDulicy}" for="IDulicy" />
+                        <p:inputText id="IDulicy" value="#{czytelnicyController.selected.IDulicy}" title="#{bundle.CreateCzytelnicyTitle_IDulicy}" />
+                        <p:outputLabel value="#{bundle.CreateCzytelnicyLabel_ulica}" for="ulica" />
+                        <p:inputText id="ulica" value="#{czytelnicyController.selected.ulica}" title="#{bundle.CreateCzytelnicyTitle_ulica}" />
+                        <p:outputLabel value="#{bundle.CreateCzytelnicyLabel_telefon}" for="telefon" />
+                        <p:inputText id="telefon" value="#{czytelnicyController.selected.telefon}" title="#{bundle.CreateCzytelnicyTitle_telefon}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{czytelnicyController.create}" value="#{bundle.Save}" update="display,:CzytelnicyListForm:datalist,:growl" oncomplete="handleSubmit(args,'CzytelnicyCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CzytelnicyCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="WypozyczeniaEditDlg" widgetVar="WypozyczeniaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditWypozyczeniaTitle}">
+            <h:form id="WypozyczeniaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{wypozyczeniaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditWypozyczeniaLabel_dataWyp}" for="dataWyp" />
+                        <p:calendar id="dataWyp" pattern="MM/dd/yyyy HH:mm:ss" value="#{wypozyczeniaController.selected.dataWyp}" title="#{bundle.EditWypozyczeniaTitle_dataWyp}" required="true" requiredMessage="#{bundle.EditWypozyczeniaRequiredMessage_dataWyp}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditWypozyczeniaLabel_dataPrzed}" for="dataPrzed" />
+                        <p:calendar id="dataPrzed" pattern="MM/dd/yyyy HH:mm:ss" value="#{wypozyczeniaController.selected.dataPrzed}" title="#{bundle.EditWypozyczeniaTitle_dataPrzed}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditWypozyczeniaLabel_daraZwrot}" for="daraZwrot" />
+                        <p:calendar id="daraZwrot" pattern="MM/dd/yyyy HH:mm:ss" value="#{wypozyczeniaController.selected.daraZwrot}" title="#{bundle.EditWypozyczeniaTitle_daraZwrot}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditWypozyczeniaLabel_IDwypozyczenia}" for="IDwypozyczenia" />
+                        <p:inputText id="IDwypozyczenia" value="#{wypozyczeniaController.selected.IDwypozyczenia}" title="#{bundle.EditWypozyczeniaTitle_IDwypozyczenia}" />
+                        <p:outputLabel value="#{bundle.EditWypozyczeniaLabel_wypozyczeniacol}" for="wypozyczeniacol" />
+                        <p:inputText id="wypozyczeniacol" value="#{wypozyczeniaController.selected.wypozyczeniacol}" title="#{bundle.EditWypozyczeniaTitle_wypozyczeniacol}" required="true" requiredMessage="#{bundle.EditWypozyczeniaRequiredMessage_wypozyczeniacol}"/>
+                        <p:outputLabel value="#{bundle.EditWypozyczeniaLabel_odebrano}" for="odebrano" />
+                        <p:inputText id="odebrano" value="#{wypozyczeniaController.selected.odebrano}" title="#{bundle.EditWypozyczeniaTitle_odebrano}" />
+                        <p:outputLabel value="#{bundle.EditWypozyczeniaLabel_IDegzemplarza}" for="IDegzemplarza" />
+                        <p:selectOneMenu id="IDegzemplarza" value="#{wypozyczeniaController.selected.IDegzemplarza}" required="true" requiredMessage="#{bundle.EditWypozyczeniaRequiredMessage_IDegzemplarza}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{egzemplarzeController.itemsAvailableSelectOne}"
+                                           var="IDegzemplarzaItem"
+                                           itemValue="#{IDegzemplarzaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditWypozyczeniaLabel_NRkarty}" for="NRkarty" />
+                        <p:selectOneMenu id="NRkarty" value="#{wypozyczeniaController.selected.NRkarty}" required="true" requiredMessage="#{bundle.EditWypozyczeniaRequiredMessage_NRkarty}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{czytelnicyController.itemsAvailableSelectOne}"
+                                           var="NRkartyItem"
+                                           itemValue="#{NRkartyItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{wypozyczeniaController.update}" value="#{bundle.Save}" update="display,:WypozyczeniaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'WypozyczeniaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="WypozyczeniaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

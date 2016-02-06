@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="WypozyczeniaViewDlg" widgetVar="WypozyczeniaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewWypozyczeniaTitle}">
+            <h:form id="WypozyczeniaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{wypozyczeniaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewWypozyczeniaLabel_dataWyp}"/>
+                        <h:outputText value="#{wypozyczeniaController.selected.dataWyp}" title="#{bundle.ViewWypozyczeniaTitle_dataWyp}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewWypozyczeniaLabel_dataPrzed}"/>
+                        <h:outputText value="#{wypozyczeniaController.selected.dataPrzed}" title="#{bundle.ViewWypozyczeniaTitle_dataPrzed}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewWypozyczeniaLabel_daraZwrot}"/>
+                        <h:outputText value="#{wypozyczeniaController.selected.daraZwrot}" title="#{bundle.ViewWypozyczeniaTitle_daraZwrot}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewWypozyczeniaLabel_IDwypozyczenia}"/>
+                        <h:outputText value="#{wypozyczeniaController.selected.IDwypozyczenia}" title="#{bundle.ViewWypozyczeniaTitle_IDwypozyczenia}"/>
+                        <h:outputText value="#{bundle.ViewWypozyczeniaLabel_wypozyczeniacol}"/>
+                        <h:outputText value="#{wypozyczeniaController.selected.wypozyczeniacol}" title="#{bundle.ViewWypozyczeniaTitle_wypozyczeniacol}"/>
+                        <h:outputText value="#{bundle.ViewWypozyczeniaLabel_odebrano}"/>
+                        <h:outputText value="#{wypozyczeniaController.selected.odebrano}" title="#{bundle.ViewWypozyczeniaTitle_odebrano}"/>
+                        <h:outputText value="#{bundle.ViewWypozyczeniaLabel_IDegzemplarza}"/>
+                        <h:outputText value="#{wypozyczeniaController.selected.IDegzemplarza}" title="#{bundle.ViewWypozyczeniaTitle_IDegzemplarza}"/>
+                        <h:outputText value="#{bundle.ViewWypozyczeniaLabel_NRkarty}"/>
+                        <h:outputText value="#{wypozyczeniaController.selected.NRkarty}" title="#{bundle.ViewWypozyczeniaTitle_NRkarty}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="WypozyczeniaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

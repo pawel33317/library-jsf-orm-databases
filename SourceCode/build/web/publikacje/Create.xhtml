@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PublikacjeCreateDlg" widgetVar="PublikacjeCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePublikacjeTitle}">
+            <h:form id="PublikacjeCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{publikacjeController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreatePublikacjeLabel_idpublikacji}" for="idpublikacji" />
+                        <p:inputText id="idpublikacji" value="#{publikacjeController.selected.idpublikacji}" title="#{bundle.CreatePublikacjeTitle_idpublikacji}" required="true" requiredMessage="#{bundle.CreatePublikacjeRequiredMessage_idpublikacji}"/>
+                        <p:outputLabel value="#{bundle.CreatePublikacjeLabel_tytul}" for="tytul" />
+                        <p:inputText id="tytul" value="#{publikacjeController.selected.tytul}" title="#{bundle.CreatePublikacjeTitle_tytul}" required="true" requiredMessage="#{bundle.CreatePublikacjeRequiredMessage_tytul}"/>
+                        <p:outputLabel value="#{bundle.CreatePublikacjeLabel_rok}" for="rok" />
+                        <p:inputText id="rok" value="#{publikacjeController.selected.rok}" title="#{bundle.CreatePublikacjeTitle_rok}" />
+                        <p:outputLabel value="#{bundle.CreatePublikacjeLabel_miejsce}" for="miejsce" />
+                        <p:inputText id="miejsce" value="#{publikacjeController.selected.miejsce}" title="#{bundle.CreatePublikacjeTitle_miejsce}" />
+                        <p:outputLabel value="#{bundle.CreatePublikacjeLabel_slowaKluczowe}" for="slowaKluczowe" />
+                        <p:inputText id="slowaKluczowe" value="#{publikacjeController.selected.slowaKluczowe}" title="#{bundle.CreatePublikacjeTitle_slowaKluczowe}" />
+                        <p:outputLabel value="#{bundle.CreatePublikacjeLabel_idkategorii}" for="idkategorii" />
+                        <p:selectOneMenu id="idkategorii" value="#{publikacjeController.selected.idkategorii}" required="true" requiredMessage="#{bundle.EditPublikacjeRequiredMessage_idkategorii}">
+                            <f:selectItems value="#{kategorieController.itemsAvailableSelectOne}"
+                                           var="idkategoriiItem"
+                                           itemValue="#{idkategoriiItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePublikacjeLabel_idautora}" for="idautora" />
+                        <p:selectOneMenu id="idautora" value="#{publikacjeController.selected.idautora}" required="true" requiredMessage="#{bundle.EditPublikacjeRequiredMessage_idautora}">
+                            <f:selectItems value="#{autorzyController.itemsAvailableSelectOne}"
+                                           var="idautoraItem"
+                                           itemValue="#{idautoraItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePublikacjeLabel_idwydawcy}" for="idwydawcy" />
+                        <p:selectOneMenu id="idwydawcy" value="#{publikacjeController.selected.idwydawcy}" required="true" requiredMessage="#{bundle.EditPublikacjeRequiredMessage_idwydawcy}">
+                            <f:selectItems value="#{wydawcaController.itemsAvailableSelectOne}"
+                                           var="idwydawcyItem"
+                                           itemValue="#{idwydawcyItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePublikacjeLabel_idszafki}" for="idszafki" />
+                        <p:selectOneMenu id="idszafki" value="#{publikacjeController.selected.idszafki}" required="true" requiredMessage="#{bundle.EditPublikacjeRequiredMessage_idszafki}">
+                            <f:selectItems value="#{szafkiController.itemsAvailableSelectOne}"
+                                           var="idszafkiItem"
+                                           itemValue="#{idszafkiItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{publikacjeController.create}" value="#{bundle.Save}" update="display,:PublikacjeListForm:datalist,:growl" oncomplete="handleSubmit(args,'PublikacjeCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PublikacjeCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

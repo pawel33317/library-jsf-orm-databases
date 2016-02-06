@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PublikacjeViewDlg" widgetVar="PublikacjeViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPublikacjeTitle}">
+            <h:form id="PublikacjeViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{publikacjeController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPublikacjeLabel_idpublikacji}"/>
+                        <h:outputText value="#{publikacjeController.selected.idpublikacji}" title="#{bundle.ViewPublikacjeTitle_idpublikacji}"/>
+                        <h:outputText value="#{bundle.ViewPublikacjeLabel_tytul}"/>
+                        <h:outputText value="#{publikacjeController.selected.tytul}" title="#{bundle.ViewPublikacjeTitle_tytul}"/>
+                        <h:outputText value="#{bundle.ViewPublikacjeLabel_rok}"/>
+                        <h:outputText value="#{publikacjeController.selected.rok}" title="#{bundle.ViewPublikacjeTitle_rok}"/>
+                        <h:outputText value="#{bundle.ViewPublikacjeLabel_miejsce}"/>
+                        <h:outputText value="#{publikacjeController.selected.miejsce}" title="#{bundle.ViewPublikacjeTitle_miejsce}"/>
+                        <h:outputText value="#{bundle.ViewPublikacjeLabel_slowaKluczowe}"/>
+                        <h:outputText value="#{publikacjeController.selected.slowaKluczowe}" title="#{bundle.ViewPublikacjeTitle_slowaKluczowe}"/>
+                        <h:outputText value="#{bundle.ViewPublikacjeLabel_idkategorii}"/>
+                        <h:outputText value="#{publikacjeController.selected.idkategorii}" title="#{bundle.ViewPublikacjeTitle_idkategorii}"/>
+                        <h:outputText value="#{bundle.ViewPublikacjeLabel_idautora}"/>
+                        <h:outputText value="#{publikacjeController.selected.idautora}" title="#{bundle.ViewPublikacjeTitle_idautora}"/>
+                        <h:outputText value="#{bundle.ViewPublikacjeLabel_idwydawcy}"/>
+                        <h:outputText value="#{publikacjeController.selected.idwydawcy}" title="#{bundle.ViewPublikacjeTitle_idwydawcy}"/>
+                        <h:outputText value="#{bundle.ViewPublikacjeLabel_idszafki}"/>
+                        <h:outputText value="#{publikacjeController.selected.idszafki}" title="#{bundle.ViewPublikacjeTitle_idszafki}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PublikacjeViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

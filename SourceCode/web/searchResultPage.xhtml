@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+    <ui:composition template="/myTemplate.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="Strona użytkownika"></h:outputText>
+        </ui:define>
+
+        <ui:define name="pageHeader">
+            Wyniki wyszukiwania
+        </ui:define>
+
+        <ui:define name="pageContent">
+            <div style="display:inline-block; vertical-align: top; width: 195px;">
+                <h:form>       <p:growl id="messages" showDetail="false"/>
+                    <p:menu>
+                        <p:submenu label="Biblioteka">
+                            <p:menuitem value="Lista książek" outcome="/allPage.xhtml" />
+                            <p:menuitem value="Wyszukaj" outcome="/searchPage.xhtml" />
+                            <p:menuitem value="Statystyki" outcome="/infoPage.xhtml" />
+                        </p:submenu>
+                        <p:submenu label="Konto użytkownika">
+                            <p:menuitem value="Moje wypożyczenia" outcome="/userMainPage.xhtml" icon="ui-icon-home"/>
+                            <p:menuitem value="Moje rezerwacje" outcome="/userBookPage.xhtml" icon="ui-icon-home"/>
+                            <p:menuitem value="Wyloguj" outcome="/loginPage.xhtml" icon="ui-icon-star"/>
+                        </p:submenu>
+                    </p:menu></h:form>
+            </div>
+            <div style="display:inline-block;
+                 width: -moz-calc(100% - 200px);   
+                 width: -webkit-calc(100% - 200px);
+                 width: calc(100% - 200px);">
+
+                <h:form id="PublikacjeListForm">
+                    <p:panel header="Lista książek wyszukanych: #{publikacjeController.searchText}">
+                        <p:dataTable id="datalist" value="#{publikacjeController.searchedBooks}" var="item"
+                                     selectionMode="single" 
+                                     paginator="true"
+                                     rowKey="#{item.id}"
+                                     rows="10"
+                                     rowsPerPageTemplate="10,20,30,40,50"
+                                     >
+                            private String nazwa;
+                            private String autor;
+                            private String kategoria;
+                            private String wydawca;
+                            private String rok;
+                            private String iloscDostepnych;
+                            private String idEgzemplarza;
+                            private String idPublikacji;
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Id"/>
+                                </f:facet>
+                                <h:outputText value="#{item.id}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nazwa"/>
+                                </f:facet>
+                                <h:outputText value="#{item.nazwa}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Autor"/>
+                                </f:facet>
+                                <h:outputText value="#{item.autor}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Kategoria"/>
+                                </f:facet>
+                                <h:outputText value="#{item.kategoria}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Wydawca"/>
+                                </f:facet>
+                                <h:outputText value="#{item.wydawca}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Rok"/>
+                                </f:facet>
+                                <h:outputText value="#{item.rok}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Dostępnych"/>
+                                </f:facet>
+                                <h:outputText value="#{item.iloscDostepnych}"/>
+                            </p:column>
+                            <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{item.iloscDostepnych}"/>
+                                    </f:facet>
+                                    <p:commandButton  rendered="#{item.intSize > 0}" value="Rezerwuj" id="Rezerwuj" 
+                                                      actionListener="#{wypozyczeniaController.markReserved}"
+                                                     styleClass="ui-priority-primary" >
+                                        <f:attribute name="action" value="#{item.idPublikacji}" />
+                                    </p:commandButton>
+                                </p:column>
+                        </p:dataTable>
+                    </p:panel>
+                </h:form>
+
+
+
+
+
+
+
+            </div>
+        </ui:define>
+
+        <ui:define name="pageFooter">
+            <div style="clear: both"></div>
+            #{czytelnicyController.alerts}
+        </ui:define>
+    </ui:composition>
+
+</html>

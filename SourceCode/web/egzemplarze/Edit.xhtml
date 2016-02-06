@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EgzemplarzeEditDlg" widgetVar="EgzemplarzeEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditEgzemplarzeTitle}">
+            <h:form id="EgzemplarzeEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{egzemplarzeController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditEgzemplarzeLabel_IDegzemplarza}" for="IDegzemplarza" />
+                        <p:inputText id="IDegzemplarza" value="#{egzemplarzeController.selected.IDegzemplarza}" title="#{bundle.EditEgzemplarzeTitle_IDegzemplarza}" required="true" requiredMessage="#{bundle.EditEgzemplarzeRequiredMessage_IDegzemplarza}"/>
+                        <p:outputLabel value="#{bundle.EditEgzemplarzeLabel_ubytki}" for="ubytki" />
+                        <p:inputText id="ubytki" value="#{egzemplarzeController.selected.ubytki}" title="#{bundle.EditEgzemplarzeTitle_ubytki}" />
+                        <p:outputLabel value="#{bundle.EditEgzemplarzeLabel_IDpublikacji}" for="IDpublikacji" />
+                        <p:selectOneMenu id="IDpublikacji" value="#{egzemplarzeController.selected.IDpublikacji}" required="true" requiredMessage="#{bundle.EditEgzemplarzeRequiredMessage_IDpublikacji}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{publikacjeController.itemsAvailableSelectOne}"
+                                           var="IDpublikacjiItem"
+                                           itemValue="#{IDpublikacjiItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{egzemplarzeController.update}" value="#{bundle.Save}" update="display,:EgzemplarzeListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EgzemplarzeEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EgzemplarzeEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
